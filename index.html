@@ -41,12 +41,12 @@
         <div id="menu-screen" class="w-full h-full p-8 flex flex-col items-center justify-between bg-black text-white rounded-3xl">
             <!-- Menú superior -->
             <div class="w-full flex flex-col items-center text-center">
-                <!-- Icono de la brújula en SVG -->
+                <!-- Nuevo logo de torre y llave en SVG -->
                 <svg class="w-20 h-20 text-white mb-4 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
-                    <path d="M12 12m-2 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0"></path>
-                    <path d="M12 2v20"></path>
-                    <path d="M20 12H4"></path>
+                    <path d="M12 2L6 5v14l6 3 6-3V5L12 2z"></path>
+                    <path d="M12 2v10"></path>
+                    <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                    <path d="M15 15L12 18l-3-3"></path>
                 </svg>
                 <!-- Título con el nuevo color -->
                 <h1 class="text-5xl font-extrabold tracking-wide title-red">VISITAS MAGISTRALES</h1>
@@ -56,7 +56,7 @@
             <!-- Formulario de inicio de sesión -->
             <form id="login-form" class="w-full max-w-xs space-y-6 mt-12">
                 <input type="text" id="username-input" placeholder="Tu nombre o usuario"
-                    class="input-field bg-white text-gray-900">
+                    class="input-field bg-white text-gray-900" required>
                 <input type="password" id="password-input" placeholder="Contraseña (opcional)"
                     class="input-field bg-white text-gray-900">
                 <button type="submit"
