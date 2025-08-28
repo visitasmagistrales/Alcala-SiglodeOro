@@ -9,8 +9,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Fondo gris claro */
-            color: #1f2937; /* Color de texto oscuro para el contraste */
+            background-color: #f3f4f6;
+            color: #1f2937;
         }
         /* Estilos para el modal, ahora más sutil */
         #code-entry-modal {
@@ -18,7 +18,7 @@
             backdrop-filter: blur(8px);
             z-index: 100;
         }
-        /* Nuevo estilo para el título, usando el color solicitado #860000 */
+        /* Estilo para el título con el color #860000 y responsive */
         .title-red {
             color: #860000;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -38,37 +38,37 @@
     <div id="app" class="w-full max-w-sm bg-white rounded-3xl shadow-2xl flex flex-col items-center overflow-hidden relative border-4 border-gray-100">
 
         <!-- Pantalla del Menú de Inicio -->
-        <div id="menu-screen" class="w-full h-full p-8 flex flex-col items-center justify-between bg-black text-white rounded-3xl">
+        <div id="menu-screen" class="w-full h-full p-8 flex flex-col items-center justify-between bg-white text-black rounded-3xl">
             <!-- Menú superior -->
             <div class="w-full flex flex-col items-center text-center">
-                <!-- Nuevo logo de torre y llave en SVG -->
-                <svg class="w-20 h-20 text-white mb-4 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Logo de torre y llave en SVG -->
+                <svg class="w-20 h-20 text-black mb-4 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 2L6 5v14l6 3 6-3V5L12 2z"></path>
                     <path d="M12 2v10"></path>
                     <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
                     <path d="M15 15L12 18l-3-3"></path>
                 </svg>
-                <!-- Título con el nuevo color -->
-                <h1 class="text-5xl font-extrabold tracking-wide title-red">VISITAS MAGISTRALES</h1>
-                <p class="mt-2 text-gray-400 text-sm">Tu aventura comienza aquí</p>
+                <!-- Título con el nuevo color y tamaño responsive -->
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-wide title-red">VISITAS MAGISTRALES</h1>
+                <p class="mt-2 text-gray-600 text-sm">Tu aventura comienza aquí</p>
             </div>
             
             <!-- Formulario de inicio de sesión -->
             <form id="login-form" class="w-full max-w-xs space-y-6 mt-12">
                 <input type="text" id="username-input" placeholder="Tu nombre o usuario"
-                    class="input-field bg-white text-gray-900" required>
+                    class="input-field bg-gray-100 text-gray-900" required>
                 <input type="password" id="password-input" placeholder="Contraseña (opcional)"
-                    class="input-field bg-white text-gray-900">
+                    class="input-field bg-gray-100 text-gray-900">
                 <button type="submit"
-                    class="btn bg-white text-black hover:bg-gray-200">
+                    class="btn bg-black text-white hover:bg-gray-800">
                     Comenzar Aventura
                 </button>
             </form>
             
             <!-- Botones de información -->
             <div class="flex space-x-4 mt-8">
-                <button class="text-white text-sm opacity-70 hover:opacity-100 transition-opacity">Información Legal</button>
-                <button class="text-white text-sm opacity-70 hover:opacity-100 transition-opacity">Registrarse</button>
+                <button class="text-black text-sm opacity-70 hover:opacity-100 transition-opacity">Información Legal</button>
+                <button class="text-black text-sm opacity-70 hover:opacity-100 transition-opacity">Registrarse</button>
             </div>
         </div>
 
