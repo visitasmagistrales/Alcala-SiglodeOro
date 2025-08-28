@@ -9,72 +9,77 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            color: #1f2937;
+            background-color: #e5e7eb; /* Un gris claro para el fondo */
+            color: #1f2937; /* Color de texto oscuro para el contraste */
         }
-        /* Estilos para el modal */
+        /* Estilos para el modal, ahora más sutil */
         #code-entry-modal {
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             z-index: 100;
         }
-        /* Nuevo estilo para el título, usando el color solicitado */
+        /* Nuevo estilo para el título, usando el color solicitado #860000 */
         .title-red {
             color: #860000;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        /* Estilos personalizados para los botones y campos de entrada */
+        .btn {
+            @apply w-full font-bold py-4 px-6 rounded-lg transition-all duration-300 shadow-md;
+        }
+        .input-field {
+            @apply w-full p-4 rounded-lg bg-gray-100 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-colors duration-300;
         }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
     <!-- Contenedor principal de la aplicación -->
-    <div id="app" class="w-full max-w-xl bg-white rounded-xl shadow-lg flex flex-col items-center overflow-hidden relative">
+    <div id="app" class="w-full max-w-sm bg-white rounded-3xl shadow-2xl flex flex-col items-center overflow-hidden relative border-4 border-gray-100">
 
         <!-- Pantalla del Menú de Inicio -->
-        <div id="menu-screen" class="w-full h-full p-8 flex flex-col items-center justify-between bg-blue-900 text-white rounded-xl">
+        <div id="menu-screen" class="w-full h-full p-8 flex flex-col items-center justify-between bg-blue-900 text-white rounded-3xl">
             <!-- Menú superior -->
-            <div class="w-full flex justify-between items-start mb-12">
-                <!-- Logo principal -->
-                <div class="flex flex-col items-center flex-grow">
-                    <!-- Icono de la brújula en SVG -->
-                    <svg class="w-16 h-16 text-amber-400 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
-                        <path d="M12 12m-2 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0"></path>
-                        <path d="M12 2v20"></path>
-                        <path d="M20 12H4"></path>
-                    </svg>
-                    <!-- Título con el nuevo color -->
-                    <h1 class="text-4xl font-extrabold tracking-wide text-center title-red">VISITAS MAGISTRALES</h1>
-                </div>
-                
-                <!-- Menú de la esquina derecha -->
-                <div class="flex flex-col items-end space-y-2 text-sm text-gray-300">
-                    <button class="hover:text-amber-400 transition-colors">Información Legal</button>
-                    <button class="hover:text-amber-400 transition-colors">Registrarse</button>
-                </div>
+            <div class="w-full flex flex-col items-center text-center">
+                <!-- Icono de la brújula en SVG -->
+                <svg class="w-20 h-20 text-blue-300 mb-4 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
+                    <path d="M12 12m-2 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0"></path>
+                    <path d="M12 2v20"></path>
+                    <path d="M20 12H4"></path>
+                </svg>
+                <!-- Título con el nuevo color -->
+                <h1 class="text-5xl font-extrabold tracking-wide title-red">VISITAS MAGISTRALES</h1>
+                <p class="mt-2 text-blue-300 text-sm">Tu aventura comienza aquí</p>
             </div>
-
+            
             <!-- Formulario de inicio de sesión -->
-            <form id="login-form" class="w-full max-w-sm space-y-6">
+            <form id="login-form" class="w-full max-w-xs space-y-6 mt-12">
                 <input type="text" id="username-input" placeholder="Tu nombre o usuario"
-                    class="w-full p-4 rounded-lg bg-white bg-opacity-10 text-white placeholder-gray-300 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-400 transition-colors duration-300">
+                    class="input-field text-blue-900 bg-white">
                 <input type="password" id="password-input" placeholder="Contraseña (opcional)"
-                    class="w-full p-4 rounded-lg bg-white bg-opacity-10 text-white placeholder-gray-300 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-amber-400 transition-colors duration-300">
+                    class="input-field text-blue-900 bg-white">
                 <button type="submit"
-                    class="w-full bg-amber-400 text-blue-900 font-bold py-4 px-6 rounded-lg hover:bg-amber-500 transition-colors duration-300 shadow-md">
-                    Iniciar Sesión
+                    class="btn bg-blue-600 text-white hover:bg-blue-700">
+                    Comenzar Aventura
                 </button>
             </form>
+            
+            <!-- Botones de información -->
+            <div class="flex space-x-4 mt-8">
+                <button class="text-white text-sm opacity-70 hover:opacity-100 transition-opacity">Información Legal</button>
+                <button class="text-white text-sm opacity-70 hover:opacity-100 transition-opacity">Registrarse</button>
+            </div>
         </div>
 
         <!-- Pantalla de Selección de Tours (oculta por defecto) -->
-        <div id="tour-selection-screen" class="w-full h-full p-8 flex flex-col items-center justify-center bg-blue-900 text-white hidden rounded-xl">
-            <h2 class="text-3xl font-extrabold tracking-wide text-center text-amber-400 mb-8">Elige tu Aventura</h2>
+        <div id="tour-selection-screen" class="w-full h-full p-8 flex flex-col items-center justify-center bg-gray-100 text-blue-900 hidden rounded-3xl">
+            <h2 class="text-3xl font-extrabold tracking-wide text-center text-blue-900 mb-8">Elige tu Aventura</h2>
             
-            <button id="alcala-tour-button" data-tour-id="alcala-siglo-de-oro" class="w-full bg-amber-400 text-blue-900 font-bold py-4 px-6 rounded-lg hover:bg-amber-500 transition-colors duration-300 shadow-md mb-4">
+            <button id="alcala-tour-button" data-tour-id="alcala-siglo-de-oro" class="btn bg-blue-600 text-white hover:bg-blue-700 mb-4">
                 Alcalá: Siglo de Oro
             </button>
-            <button id="madrid-tour-button" data-tour-id="madrid-secretos-realeza" class="w-full bg-amber-400 text-blue-900 font-bold py-4 px-6 rounded-lg hover:bg-amber-500 transition-colors duration-300 shadow-md">
+            <button id="madrid-tour-button" data-tour-id="madrid-secretos-realeza" class="btn bg-blue-600 text-white hover:bg-blue-700">
                 Madrid: Secretos de la Realeza
             </button>
         </div>
@@ -82,7 +87,7 @@
         <!-- Pantalla del Tour (oculta por defecto) -->
         <div id="tour-screen" class="w-full h-full p-6 flex-col items-center space-y-6 hidden bg-white">
             <!-- Título de la aplicación -->
-            <h1 id="tour-title" class="text-3xl font-bold text-center text-teal-600"></h1>
+            <h1 id="tour-title" class="text-3xl font-bold text-center text-blue-900"></h1>
             
             <!-- Contenedor del vídeo -->
             <div id="video-container" class="w-full aspect-video rounded-lg overflow-hidden shadow-md">
@@ -102,9 +107,9 @@
             <!-- Formulario para introducir la solución -->
             <form id="solution-form" class="w-full space-y-4">
                 <input type="text" id="solution-input" placeholder="Introduce aquí tu solución..."
-                    class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-teal-500 transition duration-300 ease-in-out">
+                    class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-600 transition duration-300 ease-in-out">
                 <button type="submit" id="submit-button"
-                    class="w-full bg-teal-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-teal-700 transition duration-300 ease-in-out shadow-md">
+                    class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out shadow-md">
                     Desbloquear siguiente pista
                 </button>
             </form>
@@ -122,7 +127,7 @@
                 <h3 class="text-2xl font-bold mb-4 text-blue-900">Ingresa tu código de acceso</h3>
                 <form id="code-form" class="space-y-4">
                     <input type="text" id="code-input" placeholder="Código de 1 solo uso"
-                        class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-amber-500 transition duration-300">
+                        class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-600 transition duration-300">
                     <p id="code-status-message" class="text-sm text-gray-600"></p>
                     <button type="submit" id="code-submit-button"
                         class="w-full bg-blue-900 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-800 transition duration-300">
@@ -471,108 +476,6 @@
                 }, 1000);
             });
         }
-
-        // Data for each stage of the tour. Solutions are hardcoded for now.
-        const tourStages = {
-            'alcala-siglo-de-oro': {
-                name: 'Alcalá: Siglo de Oro',
-                tourCode: 'ALCALA123',
-                stages: [
-                    // Misión 1
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                        riddleText: 'Encontrar el famoso enemigo del Quijote que se representa en las escenas laterales del pedestal de la estatua.',
-                        solution: 'los molinos de viento'
-                    },
-                    // Misión 2
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/oHg5SJYRHA0',
-                        riddleText: 'Identificar el tipo de soldados que protegen la fachada de la Universidad de Alcalá.',
-                        solution: 'alabarderos'
-                    },
-                    // Misión 3
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/Yyknw8c5_7k',
-                        riddleText: 'Encontrar el nombre de la estatua en la plaza del Convento del Corpus Christi.',
-                        solution: 'san ignacio de loyola'
-                    },
-                    // Misión 4
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/S_8_K1_G1p8',
-                        riddleText: 'Encontrar el nombre de la obra en una placa en la fachada de la Calle Libreros.',
-                        solution: 'la galatea'
-                    },
-                    // Misión 5
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/8-P1T7G3RjU',
-                        riddleText: 'Encontrar el apellido del Arzobispo que mandó construir el torreón.',
-                        solution: 'tenorio'
-                    },
-                    // Misión 6
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/3Q9i33JzV4A',
-                        riddleText: 'Encontrar el nombre real del objeto que Don Quijote usa como casco en la escultura frente a su casa natal.',
-                        solution: 'bacía'
-                    },
-                    // Misión 7 (última)
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/pT7LwK-m33s', 
-                        riddleText: 'Encontrar el nombre completo del padre de Miguel de Cervantes en la placa conmemorativa de la Capilla del Oidor.',
-                        solution: 'rodrigo de cervantes'
-                    },
-                    // Final tour message stage
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/pT7LwK-m33s', 
-                        riddleText: '¡Felicidades, has completado el tour de Alcalá! Ahora muestra este mensaje para tu recompensa.'
-                    }
-                ]
-            },
-            'madrid-secretos-realeza': {
-                name: 'Madrid: Secretos de la Realeza',
-                tourCode: 'MADRID456',
-                stages: [
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/Yyknw8c5_7k',
-                        riddleText: 'En la plaza más famosa de Madrid, un rey a caballo me observa. ¿Quién soy?',
-                        solution: 'felipe iii'
-                    },
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/S_8_K1_G1p8',
-                        riddleText: 'Soy un templo de la ópera y la danza, con vistas al palacio real. ¿Qué soy?',
-                        solution: 'teatro real'
-                    },
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/3Q9i33JzV4A', 
-                        riddleText: '¡Felicidades, has completado el tour de Madrid! ¡Gracias por unirte a la aventura!'
-                    }
-                ]
-            }
-        };
-        
-        let tourData;
-        let currentStageIndex = 0;
-
-        // DOM elements for screens, forms and modal
-        const menuScreen = document.getElementById('menu-screen');
-        const tourSelectionScreen = document.getElementById('tour-selection-screen');
-        const tourScreen = document.getElementById('tour-screen');
-        const loginForm = document.getElementById('login-form');
-        const alcalaTourButton = document.getElementById('alcala-tour-button');
-        const madridTourButton = document.getElementById('madrid-tour-button');
-        const codeEntryModal = document.getElementById('code-entry-modal');
-        const codeForm = document.getElementById('code-form');
-        const codeInput = document.getElementById('code-input');
-        const codeStatusMessage = document.getElementById('code-status-message');
-        const videoPlayer = document.getElementById('video-player');
-        const tourTitle = document.getElementById('tour-title');
-        const riddleText = document.getElementById('riddle-text');
-        const solutionInput = document.getElementById('solution-input');
-        const submitButton = document.getElementById('submit-button');
-        const solutionForm = document.getElementById('solution-form');
-        const statusMessage = document.getElementById('status-message');
-        const completionMessage = document.getElementById('completion-message');
-        const userNameDisplay = document.getElementById('user-name-display');
-        const usernameInput = document.getElementById('username-input');
 
         // Initially, show the menu screen and start auth
         initAuth();
