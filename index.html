@@ -7,130 +7,115 @@
     <!-- Incluye Tailwind CSS para un diseño moderno y responsive -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Estilos personalizados */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            color: #1f2937;
+            background-color: #f0f4f8; /* Fondo gris muy claro */
+            color: #1a202c; /* Color de texto oscuro para buen contraste */
         }
-        /* Estilos para el modal, ahora más sutil */
-        #code-entry-modal {
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            z-index: 100;
+        .main-container {
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        /* Estilo para el título con el color #860000 y responsive */
-        .title-red {
-            color: #860000;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        }
-        /* Estilos personalizados para los botones y campos de entrada */
-        .btn {
-            @apply w-full font-bold py-4 px-6 rounded-lg transition-all duration-300 shadow-md;
+        .btn-primary {
+            @apply bg-gray-800 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-gray-700;
         }
         .input-field {
-            @apply w-full p-4 rounded-lg bg-gray-100 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 transition-colors duration-300;
+            @apply w-full p-4 text-gray-800 bg-gray-100 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-200;
         }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
     <!-- Contenedor principal de la aplicación -->
-    <div id="app" class="w-full max-w-sm bg-white rounded-3xl shadow-2xl flex flex-col items-center overflow-hidden relative border-4 border-gray-100">
+    <div id="app" class="w-full max-w-sm mx-auto rounded-3xl main-container flex flex-col items-center overflow-hidden">
 
         <!-- Pantalla del Menú de Inicio -->
-        <div id="menu-screen" class="w-full h-full p-8 flex flex-col items-center justify-between bg-white text-black rounded-3xl">
-            <!-- Menú superior -->
-            <div class="w-full flex flex-col items-center text-center">
-                <!-- Logo de torre y llave en SVG -->
-                <svg class="w-20 h-20 text-black mb-4 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2L6 5v14l6 3 6-3V5L12 2z"></path>
-                    <path d="M12 2v10"></path>
-                    <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
-                    <path d="M15 15L12 18l-3-3"></path>
-                </svg>
-                <!-- Título con el nuevo color y tamaño responsive -->
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-wide title-red">VISITAS MAGISTRALES</h1>
-                <p class="mt-2 text-gray-600 text-sm">Tu aventura comienza aquí</p>
-            </div>
+        <div id="menu-screen" class="w-full h-full p-8 flex flex-col items-center text-center">
+            
+            <!-- Icono de ScapeTour con un diseño elegante -->
+            <svg class="w-24 h-24 text-gray-800 mb-6 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L6 5v14l6 3 6-3V5L12 2z"></path>
+                <path d="M12 2v10"></path>
+                <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+                <path d="M15 15L12 18l-3-3"></path>
+            </svg>
+            
+            <!-- Título principal -->
+            <h1 class="text-4xl font-extrabold tracking-wide mb-2 text-gray-900">VISITAS MAGISTRALES</h1>
+            <p class="text-sm text-gray-500 mb-12">La aventura de la historia te espera</p>
             
             <!-- Formulario de inicio de sesión -->
-            <form id="login-form" class="w-full max-w-xs space-y-6 mt-12">
-                <input type="text" id="username-input" placeholder="Tu nombre o usuario"
-                    class="input-field bg-gray-100 text-gray-900" required>
-                <input type="password" id="password-input" placeholder="Contraseña (opcional)"
-                    class="input-field bg-gray-100 text-gray-900">
-                <button type="submit"
-                    class="btn bg-black text-white hover:bg-gray-800">
+            <form id="login-form" class="w-full space-y-6">
+                <input type="text" id="username-input" placeholder="Introduce tu nombre" class="input-field" required>
+                <button type="submit" class="btn-primary">
                     Entrar
                 </button>
             </form>
             
             <!-- Botones de información -->
-            <div class="flex space-x-4 mt-8">
-                <button id="legal-button" class="text-black text-sm opacity-70 hover:opacity-100 transition-opacity">Información Legal</button>
-                <button id="register-button" class="text-black text-sm opacity-70 hover:opacity-100 transition-opacity">Registrarse</button>
+            <div class="flex flex-col mt-8 space-y-4 w-full">
+                <button id="legal-button" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Información Legal</button>
+                <button id="register-button" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Registrarse</button>
             </div>
         </div>
 
         <!-- Pantalla de Selección de Tours (oculta por defecto) -->
-        <div id="tour-selection-screen" class="w-full h-full p-8 flex flex-col items-center justify-center bg-gray-100 text-black hidden rounded-3xl">
-            <h2 class="text-3xl font-extrabold tracking-wide text-center text-black mb-8">Elige tu Aventura</h2>
+        <div id="tour-selection-screen" class="w-full h-full p-8 flex flex-col items-center justify-center bg-gray-100 hidden">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Elige tu Aventura</h2>
             
-            <button id="alcala-tour-button" data-tour-id="alcala-siglo-de-oro" class="btn bg-black text-white hover:bg-gray-800 mb-4">
+            <button id="alcala-tour-button" data-tour-id="alcala-siglo-de-oro" class="btn-primary mb-4">
                 Alcalá: Siglo de Oro
             </button>
-            <button id="madrid-tour-button" data-tour-id="madrid-secretos-realeza" class="btn bg-black text-white hover:bg-gray-800">
+            <button id="madrid-tour-button" data-tour-id="madrid-secretos-realeza" class="btn-primary">
                 Madrid: Secretos de la Realeza
             </button>
         </div>
 
         <!-- Pantalla del Tour (oculta por defecto) -->
-        <div id="tour-screen" class="w-full h-full p-6 flex-col items-center space-y-6 hidden bg-white">
-            <!-- Título de la aplicación -->
-            <h1 id="tour-title" class="text-3xl font-bold text-center text-black"></h1>
+        <div id="tour-screen" class="w-full h-full p-6 flex-col items-center space-y-6 hidden">
+            <!-- Título del tour -->
+            <h1 id="tour-title" class="text-2xl font-bold text-center text-gray-800"></h1>
             
             <!-- Contenedor del vídeo -->
-            <div id="video-container" class="w-full aspect-video rounded-lg overflow-hidden shadow-md">
+            <div id="video-container" class="w-full aspect-video rounded-lg overflow-hidden shadow-lg">
                 <iframe id="video-player" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
-            <!-- Mensaje de estado -->
-            <div id="message-container" class="w-full text-center">
-                <p id="status-message" class="text-sm font-medium text-gray-700"></p>
-            </div>
-
             <!-- Contenedor del acertijo -->
-            <div id="riddle-container" class="w-full bg-gray-100 rounded-lg p-4 shadow-inner">
-                <p id="riddle-text" class="text-center font-semibold text-lg text-gray-800"></p>
+            <div id="riddle-container" class="w-full bg-white rounded-lg p-4 shadow-inner border-2 border-gray-200">
+                <p id="riddle-text" class="text-center font-semibold text-lg text-gray-700"></p>
             </div>
 
             <!-- Formulario para introducir la solución -->
             <form id="solution-form" class="w-full space-y-4">
-                <input type="text" id="solution-input" placeholder="Introduce aquí tu solución..."
-                    class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-600 transition duration-300 ease-in-out">
-                <button type="submit" id="submit-button"
-                    class="w-full bg-black text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-300 ease-in-out shadow-md">
+                <input type="text" id="solution-input" placeholder="Introduce aquí tu solución..." class="input-field">
+                <button type="submit" id="submit-button" class="btn-primary">
                     Desbloquear siguiente pista
                 </button>
             </form>
+            
+            <!-- Mensaje de estado -->
+            <div id="message-container" class="w-full text-center">
+                <p id="status-message" class="text-sm font-medium text-gray-600"></p>
+            </div>
 
             <!-- Mensaje de tour completado -->
-            <div id="completion-message" class="hidden w-full text-center">
-                <p class="text-2xl font-bold text-green-600">¡Felicidades, <span id="user-name-display"></span>!</p>
-                <p class="mt-2 text-gray-600">Has resuelto todos los acertijos. Muestra este mensaje en la Capilla del Oidor para reclamar tu kit de recompensa.</p>
+            <div id="completion-message" class="hidden w-full text-center p-4 rounded-lg bg-green-100 text-green-800">
+                <p class="text-2xl font-bold">¡Felicidades, <span id="user-name-display"></span>!</p>
+                <p class="mt-2 text-green-700">Has resuelto todos los acertijos. Muestra este mensaje para reclamar tu kit de recompensa.</p>
             </div>
         </div>
 
         <!-- Modal para ingresar el código -->
-        <div id="code-entry-modal" class="fixed inset-0 flex items-center justify-center p-4 hidden">
-            <div class="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm text-center">
-                <h3 class="text-2xl font-bold mb-4 text-black">Ingresa tu código de acceso</h3>
+        <div id="code-entry-modal" class="fixed inset-0 flex items-center justify-center p-4 hidden bg-gray-900 bg-opacity-60 backdrop-blur-sm">
+            <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm text-center">
+                <h3 class="text-2xl font-bold mb-4 text-gray-800">Ingresa tu código de acceso</h3>
                 <form id="code-form" class="space-y-4">
-                    <input type="text" id="code-input" placeholder="Código de 1 solo uso"
-                        class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-600 transition duration-300">
+                    <input type="text" id="code-input" placeholder="Código de 1 solo uso" class="input-field" required>
                     <p id="code-status-message" class="text-sm text-gray-600"></p>
-                    <button type="submit" id="code-submit-button"
-                        class="w-full bg-black text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-800 transition duration-300">
+                    <button type="submit" class="btn-primary">
                         Acceder
                     </button>
                 </form>
@@ -140,7 +125,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Global variables provided by the Canvas environment
@@ -282,15 +267,11 @@
          */
         async function renderStage(index) {
             completionMessage.classList.add('hidden');
+            solutionForm.classList.remove('hidden');
+            
             const stage = tourData.stages[index];
             
-            videoPlayer.src = stage.videoUrl;
-            riddleText.textContent = stage.riddleText;
-            solutionInput.value = '';
-            statusMessage.textContent = '';
-            tourTitle.textContent = tourData.name;
-            
-            // Check if it's the last stage (final video and completion message)
+            // Si es la última etapa, muestra el mensaje de finalización y esconde el formulario.
             if (index === tourData.stages.length - 1) {
                 solutionForm.classList.add('hidden');
                 completionMessage.classList.remove('hidden');
@@ -301,10 +282,15 @@
                     userNameDisplay.textContent = userName;
                 }
             } else {
-                // If it's not the last stage, ensure the form is visible and the completion message is hidden
                 solutionForm.classList.remove('hidden');
                 completionMessage.classList.add('hidden');
             }
+            
+            videoPlayer.src = stage.videoUrl;
+            riddleText.textContent = stage.riddleText;
+            solutionInput.value = '';
+            statusMessage.textContent = '';
+            tourTitle.textContent = tourData.name;
         }
 
         /**
@@ -375,17 +361,8 @@
                     const isCompleted = await checkTourStatus(currentTourId);
                     
                     if (isCompleted) {
-                        // Using a custom alert-like message
                         const message = 'Este tour ya ha sido completado. No puedes volver a jugarlo.';
-                        const modal = document.createElement('div');
-                        modal.className = 'fixed inset-0 flex items-center justify-center p-4 bg-gray-900 bg-opacity-50 backdrop-blur-sm z-50';
-                        modal.innerHTML = `
-                            <div class="bg-white p-6 rounded-lg shadow-xl text-center">
-                                <p class="font-bold mb-4">${message}</p>
-                                <button class="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors" onclick="this.closest('.fixed').remove()">Cerrar</button>
-                            </div>
-                        `;
-                        document.body.appendChild(modal);
+                        showCustomAlert(message);
                     } else {
                         codeEntryModal.classList.remove('hidden');
                     }
@@ -435,12 +412,10 @@
                         
                         currentStageIndex++;
                         
-                        // Check if it's the final stage (the last one without a solution)
-                        if (currentStageIndex === tourData.stages.length) {
-                            // The last stage is the video and final message, so we just render it
-                            renderStage(currentStageIndex - 1);
+                        if (currentStageIndex < tourData.stages.length) {
+                             renderStage(currentStageIndex);
                         } else {
-                            renderStage(currentStageIndex);
+                            renderStage(currentStageIndex - 1);
                         }
                     } else {
                         statusMessage.textContent = 'Solución incorrecta. ¡Inténtalo de nuevo!';
@@ -454,29 +429,26 @@
             // Handle informational button clicks
             legalButton.addEventListener('click', () => {
                 const message = "Aquí iría la información legal de la aplicación.";
-                const modal = document.createElement('div');
-                modal.className = 'fixed inset-0 flex items-center justify-center p-4 bg-gray-900 bg-opacity-50 backdrop-blur-sm z-50';
-                modal.innerHTML = `
-                    <div class="bg-white p-6 rounded-lg shadow-xl text-center">
-                        <p class="font-bold mb-4">${message}</p>
-                        <button class="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors" onclick="this.closest('.fixed').remove()">Cerrar</button>
-                    </div>
-                `;
-                document.body.appendChild(modal);
+                showCustomAlert(message);
             });
 
             registerButton.addEventListener('click', () => {
                 const message = "Esta función de registro no está disponible en este prototipo, pero puedes iniciar sesión como invitado.";
+                showCustomAlert(message);
+            });
+            
+            // Helper function to show a custom alert modal
+            function showCustomAlert(message) {
                 const modal = document.createElement('div');
                 modal.className = 'fixed inset-0 flex items-center justify-center p-4 bg-gray-900 bg-opacity-50 backdrop-blur-sm z-50';
                 modal.innerHTML = `
                     <div class="bg-white p-6 rounded-lg shadow-xl text-center">
                         <p class="font-bold mb-4">${message}</p>
-                        <button class="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors" onclick="this.closest('.fixed').remove()">Cerrar</button>
+                        <button class="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors" onclick="this.closest('.fixed').remove()">Cerrar</button>
                     </div>
                 `;
                 document.body.appendChild(modal);
-            });
+            }
         }
         
         // Handle initial Firebase auth state
@@ -491,7 +463,6 @@
                         await signInAnonymously(auth);
                         userId = auth.currentUser.uid;
                         console.log("Sesión anónima iniciada. UID:", userId);
-                        // Once authenticated, start the app
                         initApp();
                     } catch (error) {
                         console.error("Error al iniciar sesión anónima:", error);
@@ -499,7 +470,6 @@
                 } else {
                     userId = user.uid;
                     console.log("Usuario autenticado. UID:", userId);
-                    // Once authenticated, start the app
                     initApp();
                 }
             });
