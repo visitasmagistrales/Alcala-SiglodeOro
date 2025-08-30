@@ -3,481 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScapeTour App</title>
-    <!-- Incluye Tailwind CSS para un diseño moderno y responsive -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>La Gymkana del Siglo de Oro</title>
     <style>
-        /* Estilos personalizados */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Fondo gris muy claro */
-            color: #1a202c; /* Color de texto oscuro para buen contraste */
+            font-family: 'Georgia', serif;
+            background-color: #f0e6d2;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
         }
-        .main-container {
-            background: linear-gradient(145deg, #ffffff, #e6e6e6);
-            border: 2px solid #e2e8f0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .container {
+            background: #fff;
+            padding: 30px 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            border: 2px solid #a38c6f;
         }
-        .btn-primary {
-            @apply bg-gray-800 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-gray-700;
+        h1, h2 {
+            font-family: 'Times New Roman', serif;
+            color: #6a4a2b;
         }
-        .input-field {
-            @apply w-full p-4 text-gray-800 bg-gray-100 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-200;
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #a38c6f;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        button {
+            background-color: #6a4a2b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #4a3420;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .video-placeholder {
+            width: 100%;
+            background-color: #ccc;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border: 1px solid #a38c6f;
+            text-align: center;
+            color: #777;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
-
-    <!-- Contenedor principal de la aplicación -->
-    <div id="app" class="w-full max-w-sm mx-auto rounded-3xl main-container flex flex-col items-center overflow-hidden">
-
-        <!-- Pantalla del Menú de Inicio -->
-        <div id="menu-screen" class="w-full h-full p-8 flex flex-col items-center text-center">
-            
-            <!-- Icono de ScapeTour con un diseño elegante -->
-            <svg class="w-24 h-24 text-gray-800 mb-6 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L6 5v14l6 3 6-3V5L12 2z"></path>
-                <path d="M12 2v10"></path>
-                <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
-                <path d="M15 15L12 18l-3-3"></path>
-            </svg>
-            
-            <!-- Título principal -->
-            <h1 class="text-4xl font-extrabold tracking-wide mb-2 text-gray-900">VISITAS MAGISTRALES</h1>
-            <p class="text-sm text-gray-500 mb-12">La aventura de la historia te espera</p>
-            
-            <!-- Formulario de inicio de sesión -->
-            <form id="login-form" class="w-full space-y-6">
-                <input type="text" id="username-input" placeholder="Introduce tu nombre" class="input-field" required>
-                <button type="submit" class="btn-primary">
-                    Entrar
-                </button>
-            </form>
-            
-            <!-- Botones de información -->
-            <div class="flex flex-col mt-8 space-y-4 w-full">
-                <button id="legal-button" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Información Legal</button>
-                <button id="register-button" class="text-sm text-gray-600 hover:text-gray-900 transition-colors">Registrarse</button>
+<body>
+    <div class="container">
+        <h1 id="title">La Gymkana del Siglo de Oro</h1>
+        <div id="intro" class="stage">
+            <div class="video-placeholder">
+                <p>Aquí irá el vídeo introductorio del personaje (Sebastián de Nebrija).</p>
             </div>
+            <p><strong>Guion:</strong> "Saludos, agentes del tiempo. Soy Sebastián de Nebrija... Vuestra tarea, si aceptáis, es seguir sus pistas crípticas a lo largo de esta ciudad para encontrar su último y más importante manuscrito. No hay tiempo que perder. Sed astutos."</p>
+            <button onclick="startGymkana()">Empezar Misión</button>
         </div>
 
-        <!-- Pantalla de Selección de Tours (oculta por defecto) -->
-        <div id="tour-selection-screen" class="w-full h-full p-8 flex flex-col items-center justify-center bg-gray-100 hidden">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Elige tu Aventura</h2>
-            
-            <button id="alcala-tour-button" data-tour-id="alcala-siglo-de-oro" class="btn-primary mb-4">
-                Alcalá: Siglo de Oro
-            </button>
-            <button id="madrid-tour-button" data-tour-id="madrid-secretos-realeza" class="btn-primary">
-                Madrid: Secretos de la Realeza
-            </button>
+        <div id="game" class="hidden">
+            <h2 id="missionTitle"></h2>
+            <div class="video-placeholder">
+                <p id="videoPlaceholderText"></p>
+            </div>
+            <p id="missionGuion"></p>
+            <p id="acertijo"></p>
+            <input type="text" id="answerInput" placeholder="Escribe tu respuesta aquí...">
+            <button onclick="checkAnswer()">Enviar y Siguiente</button>
+            <p id="message"></p>
         </div>
 
-        <!-- Pantalla del Tour (oculta por defecto) -->
-        <div id="tour-screen" class="w-full h-full p-6 flex-col items-center space-y-6 hidden">
-            <!-- Título del tour -->
-            <h1 id="tour-title" class="text-2xl font-bold text-center text-gray-800"></h1>
-            
-            <!-- Contenedor del vídeo -->
-            <div id="video-container" class="w-full aspect-video rounded-lg overflow-hidden shadow-lg">
-                <iframe id="video-player" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div id="final" class="hidden">
+            <div class="video-placeholder">
+                <p>Aquí irá el vídeo final de felicitación.</p>
             </div>
-
-            <!-- Contenedor del acertijo -->
-            <div id="riddle-container" class="w-full bg-white rounded-lg p-4 shadow-inner border-2 border-gray-200">
-                <p id="riddle-text" class="text-center font-semibold text-lg text-gray-700"></p>
-            </div>
-
-            <!-- Formulario para introducir la solución -->
-            <form id="solution-form" class="w-full space-y-4">
-                <input type="text" id="solution-input" placeholder="Introduce aquí tu solución..." class="input-field">
-                <button type="submit" id="submit-button" class="btn-primary">
-                    Desbloquear siguiente pista
-                </button>
-            </form>
-            
-            <!-- Mensaje de estado -->
-            <div id="message-container" class="w-full text-center">
-                <p id="status-message" class="text-sm font-medium text-gray-600"></p>
-            </div>
-
-            <!-- Mensaje de tour completado -->
-            <div id="completion-message" class="hidden w-full text-center p-4 rounded-lg bg-green-100 text-green-800">
-                <p class="text-2xl font-bold">¡Felicidades, <span id="user-name-display"></span>!</p>
-                <p class="mt-2 text-green-700">Has resuelto todos los acertijos. Muestra este mensaje para reclamar tu kit de recompensa.</p>
-            </div>
-        </div>
-
-        <!-- Modal para ingresar el código -->
-        <div id="code-entry-modal" class="fixed inset-0 flex items-center justify-center p-4 hidden bg-gray-900 bg-opacity-60 backdrop-blur-sm">
-            <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm text-center">
-                <h3 class="text-2xl font-bold mb-4 text-gray-800">Ingresa tu código de acceso</h3>
-                <form id="code-form" class="space-y-4">
-                    <input type="text" id="code-input" placeholder="Código de 1 solo uso" class="input-field" required>
-                    <p id="code-status-message" class="text-sm text-gray-600"></p>
-                    <button type="submit" class="btn-primary">
-                        Acceder
-                    </button>
-                </form>
-            </div>
+            <p id="finalMessageText"></p>
+            <h2>¡Felicidades, habéis completado la misión! 🎉</h2>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global variables provided by the Canvas environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        let db;
-        let auth;
-        let userId;
-        let userName = '';
-        let currentTourId = null;
-
-        // Data for each stage of the tour. Solutions are hardcoded for now.
-        const tourStages = {
-            'alcala-siglo-de-oro': {
-                name: 'Alcalá: Siglo de Oro',
-                tourCode: 'ALCALA123',
-                stages: [
-                    // Misión 1
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                        riddleText: 'Encontrar el famoso enemigo del Quijote que se representa en las escenas laterales del pedestal de la estatua.',
-                        solution: 'los molinos de viento'
-                    },
-                    // Misión 2
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/oHg5SJYRHA0',
-                        riddleText: 'Identificar el tipo de soldados que protegen la fachada de la Universidad de Alcalá.',
-                        solution: 'alabarderos'
-                    },
-                    // Misión 3
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/Yyknw8c5_7k',
-                        riddleText: 'Encontrar el nombre de la estatua en la plaza del Convento del Corpus Christi.',
-                        solution: 'san ignacio de loyola'
-                    },
-                    // Misión 4
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/S_8_K1_G1p8',
-                        riddleText: 'Encontrar el nombre de la obra en una placa en la fachada de la Calle Libreros.',
-                        solution: 'la galatea'
-                    },
-                    // Misión 5
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/8-P1T7G3RjU',
-                        riddleText: 'Encontrar el apellido del Arzobispo que mandó construir el torreón.',
-                        solution: 'tenorio'
-                    },
-                    // Misión 6
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/3Q9i33JzV4A',
-                        riddleText: 'Encontrar el nombre real del objeto que Don Quijote usa como casco en la escultura frente a su casa natal.',
-                        solution: 'bacía'
-                    },
-                    // Misión 7 (última)
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/pT7LwK-m33s', 
-                        riddleText: 'Encontrar el nombre completo del padre de Miguel de Cervantes en la placa conmemorativa de la Capilla del Oidor.',
-                        solution: 'rodrigo de cervantes'
-                    },
-                    // Final tour message stage
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/pT7LwK-m33s', 
-                        riddleText: '¡Felicidades, has completado el tour de Alcalá! Ahora muestra este mensaje para tu recompensa.'
-                    }
-                ]
+    <script>
+        const stages = [
+            {
+                title: "Misión 1: La Plaza de la Sabiduría",
+                videoText: "Aquí irá el vídeo de la Misión 1.",
+                guion: "Saludos, agentes del tiempo. En este momento, os encontráis frente al primer vestigio del gran misterio. La primera clave no está en los libros, sino en el monumento más importante dedicado a Miguel en esta ciudad...",
+                acertijo: "Encontrad el famoso enemigo del Quijote que se representa en las escenas laterales del pedestal de la estatua.",
+                answer: "molinos de viento"
             },
-            'madrid-secretos-realeza': {
-                name: 'Madrid: Secretos de la Realeza',
-                tourCode: 'MADRID456',
-                stages: [
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/Yyknw8c5_7k',
-                        riddleText: 'En la plaza más famosa de Madrid, un rey a caballo me observa. ¿Quién soy?',
-                        solution: 'felipe iii'
-                    },
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/S_8_K1_G1p8',
-                        riddleText: 'Soy un templo de la ópera y la danza, con vistas al palacio real. ¿Qué soy?',
-                        solution: 'teatro real'
-                    },
-                    {
-                        videoUrl: 'https://www.youtube.com/embed/3Q9i33JzV4A', 
-                        riddleText: '¡Felicidades, has completado el tour de Madrid! ¡Gracias por unirte a la aventura!'
-                    }
-                ]
+            {
+                title: "Misión 2: El Saber de la Colmena",
+                videoText: "Aquí irá el vídeo de la Misión 2.",
+                guion: "¡Agentes! Debo informaros de una nueva anomalía. El tiempo está cambiando el pasado. La fachada de la 'Universidad Complutense', obra de Gil de Hontañón, ya no es como la recuerdo...",
+                acertijo: "Identificad el tipo de soldados que protegen la fachada de la Universidad de Alcalá.",
+                answer: "alabarderos"
+            },
+            {
+                title: "Misión 3: El Altar del Tiempo",
+                videoText: "Aquí irá el vídeo de la Misión 3.",
+                guion: "Habéis restaurado la historia, agentes. La valentía de los alabarderos no ha sido olvidada. Vuestra siguiente pista se encuentra en un lugar de gran devoción, una plaza que una vez perteneció al Convento de las Carmelitas de la Imgencia...",
+                acertijo: "Encontrad el nombre de la estatua en la plaza del Convento del Corpus Christi.",
+                answer: "san ignacio de loyola"
+            },
+            {
+                title: "Misión 4: Los Secretos de la Imprenta",
+                videoText: "Aquí irá el vídeo de la Misión 4.",
+                guion: "El tiempo, como una pluma sin tinta, ha borrado un hecho fundamental de nuestra historia. Debéis ahora ir a la Calle Libreros, una calle que alberga el conocimiento en cada rincón...",
+                acertijo: "Encontrad el nombre de la obra en una placa en la fachada de la Calle Libreros.",
+                answer: "la galatea"
+            },
+            {
+                title: "Misión 5: El Poder del Símbolo",
+                videoText: "Aquí irá el vídeo de la Misión 5.",
+                guion: "El tiempo se nos agota, agentes. La anomalía se está expandiendo y la realidad está a punto de romperse. La siguiente clave está en el corazón del poder eclesiástico, en el Palacio Arzobispal...",
+                acertijo: "Encontrar el apellido del Arzobispo que mandó construir el torreón.",
+                answer: "tenorio"
+            },
+            {
+                title: "Misión 6: El Legado Final",
+                videoText: "Aquí irá el vídeo de la Misión 6.",
+                guion: "¡Habéis cumplido con vuestro deber! El apellido Tenorio era el eslabón final que necesitábamos. Ahora, vuestro destino final os espera en la Casa Natal de Miguel de Cervantes...",
+                acertijo: "Encontrad el nombre real del objeto que Don Quijote usa como casco en la escultura frente a su casa natal.",
+                answer: "bacía"
+            },
+            {
+                title: "Misión 7: La Bendición del Humanista",
+                videoText: "Aquí irá el vídeo de la Misión 7.",
+                guion: "¡Habéis cumplido con vuestro deber! El nombre de la bacía era el último eslabón. Habéis completado la misión y restaurado el pasado. La última prueba os espera aquí, en la Capilla del Oidor...",
+                acertijo: "Encontrad el nombre completo del padre de Miguel de Cervantes en la placa conmemorativa de la Capilla del Oidor.",
+                answer: "rodrigo de cervantes"
             }
-        };
-        
-        let tourData;
-        let currentStageIndex = 0;
+        ];
 
-        // DOM elements for screens, forms and modal
-        const menuScreen = document.getElementById('menu-screen');
-        const tourSelectionScreen = document.getElementById('tour-selection-screen');
-        const tourScreen = document.getElementById('tour-screen');
-        const loginForm = document.getElementById('login-form');
-        const alcalaTourButton = document.getElementById('alcala-tour-button');
-        const madridTourButton = document.getElementById('madrid-tour-button');
-        const codeEntryModal = document.getElementById('code-entry-modal');
-        const codeForm = document.getElementById('code-form');
-        const codeInput = document.getElementById('code-input');
-        const codeStatusMessage = document.getElementById('code-status-message');
-        const videoPlayer = document.getElementById('video-player');
-        const tourTitle = document.getElementById('tour-title');
-        const riddleText = document.getElementById('riddle-text');
-        const solutionInput = document.getElementById('solution-input');
-        const submitButton = document.getElementById('submit-button');
-        const solutionForm = document.getElementById('solution-form');
-        const statusMessage = document.getElementById('status-message');
-        const completionMessage = document.getElementById('completion-message');
-        const userNameDisplay = document.getElementById('user-name-display');
-        const usernameInput = document.getElementById('username-input');
-        const legalButton = document.getElementById('legal-button');
-        const registerButton = document.getElementById('register-button');
+        let currentStage = 0;
+        const introSection = document.getElementById('intro');
+        const gameSection = document.getElementById('game');
+        const finalSection = document.getElementById('final');
+        const missionTitleElement = document.getElementById('missionTitle');
+        const videoTextElement = document.getElementById('videoPlaceholderText');
+        const missionGuionElement = document.getElementById('missionGuion');
+        const acertijoElement = document.getElementById('acertijo');
+        const answerInput = document.getElementById('answerInput');
+        const messageElement = document.getElementById('message');
+        const finalMessageTextElement = document.getElementById('finalMessageText');
 
-        /**
-         * Renders the specified screen by toggling hidden classes.
-         * @param {string} screenName The name of the screen to show ('menu', 'tour-selection', 'tour').
-         */
-        function showScreen(screenName) {
-            menuScreen.classList.add('hidden');
-            tourSelectionScreen.classList.add('hidden');
-            tourScreen.classList.add('hidden');
-
-            if (screenName === 'menu') {
-                menuScreen.classList.remove('hidden');
-            } else if (screenName === 'tour-selection') {
-                tourSelectionScreen.classList.remove('hidden');
-            } else if (screenName === 'tour') {
-                tourScreen.classList.remove('hidden');
-            }
+        function startGymkana() {
+            introSection.classList.add('hidden');
+            gameSection.classList.remove('hidden');
+            loadStage();
         }
-        
-        /**
-         * Renders the current stage of the tour.
-         * @param {number} index The index of the stage to display.
-         */
-        async function renderStage(index) {
-            completionMessage.classList.add('hidden');
-            solutionForm.classList.remove('hidden');
-            
-            const stage = tourData.stages[index];
-            
-            // Si es la última etapa, muestra el mensaje de finalización y esconde el formulario.
-            if (index === tourData.stages.length - 1) {
-                solutionForm.classList.add('hidden');
-                completionMessage.classList.remove('hidden');
-                // Display the user's name in the completion message
-                const userDoc = await getDoc(doc(db, `artifacts/${appId}/users/${userId}/data/profile`));
-                if (userDoc.exists()) {
-                    userName = userDoc.data().name;
-                    userNameDisplay.textContent = userName;
-                }
+
+        function loadStage() {
+            if (currentStage < stages.length) {
+                const stage = stages[currentStage];
+                missionTitleElement.textContent = stage.title;
+                videoTextElement.textContent = stage.videoText;
+                missionGuionElement.innerHTML = `<strong>Guion:</strong> ${stage.guion}`;
+                acertijoElement.innerHTML = `<strong>Acertijo:</strong> ${stage.acertijo}`;
+                answerInput.value = '';
+                messageElement.textContent = '';
             } else {
-                solutionForm.classList.remove('hidden');
-                completionMessage.classList.add('hidden');
-            }
-            
-            videoPlayer.src = stage.videoUrl;
-            riddleText.textContent = stage.riddleText;
-            solutionInput.value = '';
-            statusMessage.textContent = '';
-            tourTitle.textContent = tourData.name;
-        }
-
-        /**
-         * Checks the status of a tour in Firestore.
-         * @param {string} tourId The ID of the tour.
-         */
-        async function checkTourStatus(tourId) {
-            const tourDocRef = doc(db, `artifacts/${appId}/users/${userId}/gymkanas/${tourId}`);
-            try {
-                const tourDoc = await getDoc(tourDocRef);
-                if (tourDoc.exists()) {
-                    return tourDoc.data().completed;
-                }
-                return false;
-            } catch (error) {
-                console.error("Error al obtener el estado del tour:", error);
-                return false;
+                showFinalScreen();
             }
         }
 
-        /**
-         * Activates and marks a tour as completed in Firestore.
-         * @param {string} tourId The ID of the tour.
-         */
-        async function activateTour(tourId) {
-            const tourDocRef = doc(db, `artifacts/${appId}/users/${userId}/gymkanas/${tourId}`);
-            try {
-                await setDoc(tourDocRef, {
-                    completed: true
-                }, { merge: true });
-                console.log(`Tour '${tourId}' marcado como completado.`);
-            } catch (error) {
-                console.error("Error al activar el tour:", error);
-            }
-        }
-        
-        /**
-         * Saves the user's name to Firestore.
-         * @param {string} name The user's name.
-         */
-        async function saveUserName(name) {
-            const userDocRef = doc(db, `artifacts/${appId}/users/${userId}/data/profile`);
-            try {
-                await setDoc(userDocRef, { name: name }, { merge: true });
-                console.log("Nombre de usuario guardado:", name);
-            } catch (error) {
-                console.error("Error al guardar el nombre de usuario:", error);
-            }
-        }
-        
-        // Main app initialization logic after authentication
-        function initApp() {
-            // Handle login form submission
-            loginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const enteredName = usernameInput.value.trim();
-                if (enteredName) {
-                    await saveUserName(enteredName);
-                }
-                showScreen('tour-selection');
-            });
+        function checkAnswer() {
+            const userAnswer = answerInput.value.trim().toLowerCase();
+            const correctAnswer = stages[currentStage].answer.toLowerCase();
 
-            // Handle tour button clicks
-            const tourButtons = document.querySelectorAll('#alcala-tour-button, #madrid-tour-button');
-            tourButtons.forEach(button => {
-                button.addEventListener('click', async () => {
-                    currentTourId = button.dataset.tourId;
-                    const isCompleted = await checkTourStatus(currentTourId);
-                    
-                    if (isCompleted) {
-                        const message = 'Este tour ya ha sido completado. No puedes volver a jugarlo.';
-                        showCustomAlert(message);
-                    } else {
-                        codeEntryModal.classList.remove('hidden');
-                    }
-                });
-            });
-
-            // Handle code entry form submission
-            codeForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const enteredCode = codeInput.value.trim().toUpperCase();
-                const correctCode = tourStages[currentTourId].tourCode;
-                
-                if (enteredCode === correctCode) {
-                    codeStatusMessage.textContent = 'Código correcto. Accediendo...';
-                    codeStatusMessage.classList.remove('text-red-500');
-                    codeStatusMessage.classList.add('text-green-500');
-                    
-                    await activateTour(currentTourId);
-                    
-                    codeEntryModal.classList.add('hidden');
-                    tourData = tourStages[currentTourId];
-                    showScreen('tour');
-                    renderStage(currentStageIndex);
-                } else {
-                    codeStatusMessage.textContent = 'Código incorrecto. Inténtalo de nuevo.';
-                    codeStatusMessage.classList.remove('text-green-500');
-                    codeStatusMessage.classList.add('text-red-500');
-                }
-            });
-
-            // Handle tour solution form submission (existing logic)
-            solutionForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const correctSolution = tourData.stages[currentStageIndex].solution;
-                const userSolution = solutionInput.value.trim().toLowerCase();
-                
-                submitButton.disabled = true;
-                statusMessage.textContent = 'Verificando...';
-                statusMessage.classList.remove('text-red-500', 'text-green-500');
-                statusMessage.classList.add('text-gray-500');
-
+            if (userAnswer === correctAnswer) {
+                messageElement.textContent = "¡Respuesta correcta! Pasando a la siguiente misión...";
+                messageElement.style.color = "green";
                 setTimeout(() => {
-                    if (userSolution === correctSolution) {
-                        statusMessage.textContent = '¡Correcto! Desbloqueando la siguiente pista...';
-                        statusMessage.classList.remove('text-gray-500', 'text-red-500');
-                        statusMessage.classList.add('text-green-500');
-                        
-                        currentStageIndex++;
-                        
-                        if (currentStageIndex < tourData.stages.length) {
-                             renderStage(currentStageIndex);
-                        } else {
-                            renderStage(currentStageIndex - 1);
-                        }
-                    } else {
-                        statusMessage.textContent = 'Solución incorrecta. ¡Inténtalo de nuevo!';
-                        statusMessage.classList.remove('text-gray-500', 'text-green-500');
-                        statusMessage.classList.add('text-red-500');
-                    }
-                    submitButton.disabled = false;
-                }, 1000);
-            });
-
-            // Handle informational button clicks
-            legalButton.addEventListener('click', () => {
-                const message = "Aquí iría la información legal de la aplicación.";
-                showCustomAlert(message);
-            });
-
-            registerButton.addEventListener('click', () => {
-                const message = "Esta función de registro no está disponible en este prototipo, pero puedes iniciar sesión como invitado.";
-                showCustomAlert(message);
-            });
-            
-            // Helper function to show a custom alert modal
-            function showCustomAlert(message) {
-                const modal = document.createElement('div');
-                modal.className = 'fixed inset-0 flex items-center justify-center p-4 bg-gray-900 bg-opacity-50 backdrop-blur-sm z-50';
-                modal.innerHTML = `
-                    <div class="bg-white p-6 rounded-lg shadow-xl text-center">
-                        <p class="font-bold mb-4">${message}</p>
-                        <button class="px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors" onclick="this.closest('.fixed').remove()">Cerrar</button>
-                    </div>
-                `;
-                document.body.appendChild(modal);
+                    currentStage++;
+                    loadStage();
+                }, 1500);
+            } else {
+                messageElement.textContent = `Respuesta incorrecta. Inténtalo de nuevo.`;
+                messageElement.style.color = "red";
             }
         }
-        
-        // Handle initial Firebase auth state
-        async function initAuth() {
-            auth = getAuth(initializeApp(firebaseConfig));
-            db = getFirestore(initializeApp(firebaseConfig));
-            
-            // Wait for auth state to be ready
-            onAuthStateChanged(auth, async (user) => {
-                if (!user) {
-                    try {
-                        await signInAnonymously(auth);
-                        userId = auth.currentUser.uid;
-                        console.log("Sesión anónima iniciada. UID:", userId);
-                        initApp();
-                    } catch (error) {
-                        console.error("Error al iniciar sesión anónima:", error);
-                    }
-                } else {
-                    userId = user.uid;
-                    console.log("Usuario autenticado. UID:", userId);
-                    initApp();
-                }
-            });
-        }
 
-        // Initially, show the menu screen and start auth
-        initAuth();
-        showScreen('menu');
+        function showFinalScreen() {
+            gameSection.classList.add('hidden');
+            finalSection.classList.remove('hidden');
+            finalMessageTextElement.innerHTML = `<strong>Guion del Vídeo Final:</strong> "¡Felicidades, agentes del tiempo! Habéis resuelto todos los acertijos y habéis demostrado que vuestro ingenio es digno de la Orden del Tiempo..."`;
+        }
     </script>
 </body>
 </html>
